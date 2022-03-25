@@ -44,11 +44,13 @@ int main(int argc, char const *argv[])
     char* copy_str = (char*)argv[1];
     size_t copySize = strlen(copy_str) + 1;
     auto taintedStr1 = sandbox.malloc_in_sandbox<char>(copySize);
-    
+    std::strcopy(taintedStr1, copy_str, copySize);
+            
     char* result_str = (char*)argv[2];
     size_t resultSize = strlen(result_str) + 1;
     auto taintedStr2 = sandbox.malloc_in_sandbox<char>(resultSize);
-    
+    std::strcopy(taintedStr2, result_str, resultSize);
+  
     sandbox.invoke_sandbox_function(print_version);   
     long long hash = sandbox.invoke_sandbox_function(get_hash,taintedStr1, on_completion, taintedStr2);
 
