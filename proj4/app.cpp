@@ -24,15 +24,17 @@ void get_hash_cb(rlbox_sandbox<rlbox_noop_sandbox>& _,
 void on_completion(rlbox::rlbox_sandbox<rlbox::rlbox_wasm2c_sandbox>& _,
                     rlbox::tainted<char*,rlbox::rlbox_wasm2c_sandbox> tainted_str) {
   
-    char result_str[100];
+
     auto result = tainted_str.copy_and_verify_string([](std::unique_ptr<char[]> ret){
       if (strlen(ret.get()) < 100)
         return ret;
       else{
-        printf("ERROR: INVALID result CAUGHT");
+        printf("ERROR: INVALID result CAUGHT\n");
         exit(1);
         }
     });
+    
+    char result_str[100];
     strcpy(result_str, result.get());
     printf("Done: %s\n", result_str);
   
@@ -64,13 +66,12 @@ int main(int argc, char const *argv[])
     auto cb = sandbox.register_callback(on_completion);
     auto hash = sandbox.invoke_sandbox_function(get_hash,taintedStr1, cb, taintedStr2);
     long long hash2 = hash.copy_and_verify([](long long ret){
-      if (ret >= 0 && ret < 100000000000)
+    if (ret > 100000000000 || ret < 0) {
+        printf("ERROR: INVALID hash CAUGHT\n");
+        exit(1);   
+    } else {
         return ret;
-      else{
-        printf("ERROR: INVALID result CAUGHT");
-        exit(1);
-        }
-    });
+    }});
         
     printf("Hash = %llx\n", hash2);
 
