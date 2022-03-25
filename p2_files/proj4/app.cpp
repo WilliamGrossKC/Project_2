@@ -35,6 +35,7 @@ int main(int argc, char const *argv[])
     print_version();    
     long long hash = get_hash(copy_str, on_completion, result_str);
     printf("Hash = %llx\n", hash);
-
+    
+    sandbox.destroy_sandbox();
     return 0;
 }
