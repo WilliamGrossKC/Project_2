@@ -54,7 +54,7 @@ int main(int argc, char const *argv[])
   
     sandbox.invoke_sandbox_function(print_version);
     auto cb = sandbox.register_callback(on_completion);
-    auto hash = sandbox.invoke_sandbox_function(get_hash,taintedStr1, on_completion, taintedStr2);
+    auto hash = sandbox.invoke_sandbox_function(get_hash,taintedStr1, cb, taintedStr2);
     long long hash2 = hash.UNSAFE_unverified();
     printf("Hash = %llx\n", hash2);
 
