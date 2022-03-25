@@ -45,11 +45,11 @@ int main(int argc, char const *argv[])
     size_t resultSize = strlen(result_str) + 1;
     auto taintedStr2 = sandbox.malloc_in_sandbox<char>(resultSize);
     
-    sandbox.invoke_sandbox_function(print_version);
-    print_version();    
+    sandbox.invoke_sandbox_function(print_version);   
     long long hash = sandbox.invoke_sandbox_function(get_hash,copy_str, on_completion, result_str);
+    long long hash2 = get_hash(copy_str, on_completion, result_str);
     printf("Hash = %llx\n", hash);
-    
+    printf("Hash2 = %llx\n", hash2);
     sandbox.destroy_sandbox();
     return 0;
 }
