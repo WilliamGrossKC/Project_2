@@ -47,7 +47,7 @@ int main(int argc, char const *argv[])
     
     sandbox.invoke_sandbox_function(print_version);
     print_version();    
-    long long hash = get_hash(copy_str, on_completion, result_str);
+    long long hash = sandbox.invoke_sandbox_function(get_hash,copy_str, on_completion, result_str);
     printf("Hash = %llx\n", hash);
     
     sandbox.destroy_sandbox();
