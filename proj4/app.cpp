@@ -25,6 +25,7 @@ void on_completion(rlbox::rlbox_sandbox<rlbox::rlbox_wasm2c_sandbox>& _,
                     rlbox::tainted<char*,rlbox::rlbox_wasm2c_sandbox> tainted_str) {
   
     char result_str[100];
+    printf(tainted_str);
     strcpy(result_str, tainted_str.UNSAFE_unverified());
     printf("Done: %s\n", result_str);
   
