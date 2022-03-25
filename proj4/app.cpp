@@ -10,7 +10,7 @@ using namespace rlbox;
 //Callback on completion of library function
 
 
-void hello_cb(rlbox_sandbox<rlbox_noop_sandbox>& _,
+void get_hash_cb(rlbox_sandbox<rlbox_noop_sandbox>& _,
               tainted<const char*, rlbox_noop_sandbox> str) {
   auto checked_string =
     str.copy_and_verify_string([](std::unique_ptr<char[]> val) {
