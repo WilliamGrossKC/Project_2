@@ -1,0 +1,3 @@
+There was an error with sol1. The problem was that we were not checking to see if the second parameter passed in,
+which in this case was "Completed!", would cause a buffer overflow. This is a potential exploit. In the string we use, we
+pass in a string for the second parameter that is greater than 100 characters which causes a buffer overflow. 
