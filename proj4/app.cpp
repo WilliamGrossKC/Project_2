@@ -27,7 +27,6 @@ int main(int argc, char const *argv[])
   
     char* copy_str = (char*)argv[1];
     char* result_str = (char*)argv[2];
-
     print_version();    
     long long hash = get_hash(copy_str, on_completion, result_str);
     printf("Hash = %llx\n", hash);
