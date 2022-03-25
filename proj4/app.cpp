@@ -29,7 +29,7 @@ void on_completion(rlbox::rlbox_sandbox<rlbox::rlbox_wasm2c_sandbox>& _,
       if (strlen(ret.get()) < 100)
         return ret;
       else{
-        print("ERROR: INVALID result CAUGHT");
+        printf("ERROR: INVALID result CAUGHT");
         exit(1);
         }
     });
@@ -67,7 +67,7 @@ int main(int argc, char const *argv[])
       if (ret >= 0 && ret < 100000000000)
         return ret;
       else{
-        print("ERROR: INVALID result CAUGHT");
+        printf("ERROR: INVALID result CAUGHT");
         exit(1);
         }
     });
