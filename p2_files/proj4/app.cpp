@@ -23,7 +23,10 @@ int main(int argc, char const *argv[])
         std::cerr << "Usage: " << argv[0] << " COPY_STRING RESULT_STRING" << std::endl;
         return 1;
     }
-
+    
+    rlbox::rlbox_sandbox<noop_sandbox> sandbox;
+    sandbox.create_sandbox();
+    
     char* copy_str = (char*)argv[1];
     char* result_str = (char*)argv[2];
 
