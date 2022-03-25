@@ -50,7 +50,7 @@ int main(int argc, char const *argv[])
     char* result_str = (char*)argv[2];
     size_t resultSize = strlen(result_str) + 1;
     auto taintedStr2 = sandbox.malloc_in_sandbox<char>(resultSize);
-    std::strcopy(taintedStr2UNSAFE_unverified(), result_str, resultSize);
+    std::strcopy(taintedStr2.UNSAFE_unverified(), result_str, resultSize);
   
     sandbox.invoke_sandbox_function(print_version);
     auto cb = sandbox.register_callback(on_completion);
