@@ -23,7 +23,7 @@ void get_hash_cb(rlbox_sandbox<rlbox_noop_sandbox>& _,
 void on_completion(rlbox::rlbox_sandbox<rlbox::rlbox_wasm2c_sandbox>& _,
                     rlbox::tainted<char*,rlbox::rlbox_wasm2c_sandbox> tainted_str) {
   
-    char result_str[100];
+    rlbox::rlbox_wasm2c_sandbox> result_str[100];
     strcpy(result_str, tainted_str);
     printf("Done: %s\n", result_str);
   
