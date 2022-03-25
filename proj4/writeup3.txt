@@ -1,1 +1,4 @@
-In Sol1 we check only the first argument of the string we pass in our app. In Sol3 we check and verify the whole string to prevent a buffer overflow. We do this by use the string verify and copy method to make sure nothing causes a buffer overflow. We also double check our hash code to make sure it is not greater than should be allowed given the characters. 
+In Sol1 we check only the first argument of the string we pass in our app. 
+In Sol3 we check and verify the whole string to prevent a buffer overflow. 
+We do this by use the string verify and copy method to make sure nothing causes a buffer overflow. 
+We also double check our hash code to make sure it is not greater than should be allowed given the characters. 
