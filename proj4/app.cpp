@@ -8,6 +8,18 @@
 #include "rlbox.hpp"
 using namespace rlbox;
 //Callback on completion of library function
+
+
+void hello_cb(rlbox_sandbox<rlbox_noop_sandbox>& _,
+              tainted<const char*, rlbox_noop_sandbox> str) {
+  auto checked_string =
+    str.copy_and_verify_string([](std::unique_ptr<char[]> val) {
+        return std::strlen(val.get()) < 1024 ? std::move(val) : nullptr;
+    });
+  printf("hello_cb: %s\n", checked_string.get());
+}
+
+
 void on_completion(char* result) {
     char result_str[100];
     strcpy(result_str, result);
