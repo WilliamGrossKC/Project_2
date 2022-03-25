@@ -1,0 +1,5 @@
+For this part, we implement a version of a hash function using the sandbox. 
+Firstly, we copy our copy string and result string into malloced portions of the sandbox and save their length. 
+Then we wrap the print function for the sandbox and use the call back function to safely untaint the string. 
+From here, we can then used the wrapped get_hash function and declare it as Unsafe and unverified. 
+Then, we destroy our sandbox. This method presents us from having a seg fault on the string that we pass in.
