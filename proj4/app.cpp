@@ -10,6 +10,7 @@
 using namespace rlbox;
 //Callback on completion of library function
 
+// Ingore this, just useful for seeing copy and verify
 /*
 void get_hash_cb(rlbox_sandbox<rlbox_noop_sandbox>& _,
               tainted<const char*, rlbox_noop_sandbox> str) {
@@ -24,7 +25,7 @@ void get_hash_cb(rlbox_sandbox<rlbox_noop_sandbox>& _,
 void on_completion(rlbox::rlbox_sandbox<rlbox::rlbox_wasm2c_sandbox>& _,
                     rlbox::tainted<char*,rlbox::rlbox_wasm2c_sandbox> tainted_str) {
   
-
+    // Here we need to copy and verify the string
     auto result = tainted_str.copy_and_verify_string([](std::unique_ptr<char[]> ret){
       if (strlen(ret.get()) < 100)
         return ret;
@@ -34,6 +35,7 @@ void on_completion(rlbox::rlbox_sandbox<rlbox::rlbox_wasm2c_sandbox>& _,
         }
     });
     
+    // Making space and copying
     char result_str[100];
     strcpy(result_str, result.get());
     printf("Done: %s\n", result_str);
@@ -49,9 +51,11 @@ int main(int argc, char const *argv[])
         return 1;
     }
     
+    // Making sandbox
     rlbox::rlbox_sandbox<rlbox::rlbox_wasm2c_sandbox> sandbox;
     sandbox.create_sandbox("./my_lib.so");
     
+    // Copying strings and mkaing unverified pointers
     char* copy_str = (char*)argv[1];
     size_t copySize = strlen(copy_str) + 1;
     auto taintedStr1 = sandbox.malloc_in_sandbox<char>(copySize);
@@ -61,10 +65,14 @@ int main(int argc, char const *argv[])
     size_t resultSize = strlen(result_str) + 1;
     auto taintedStr2 = sandbox.malloc_in_sandbox<char>(resultSize);
     std::strcpy(taintedStr2.unverified_safe_pointer_because(resultSize, "writing to region"), result_str);
+    
   
+    // Callback and invoke hash
     sandbox.invoke_sandbox_function(print_version);
     auto cb = sandbox.register_callback(on_completion);
     auto hash = sandbox.invoke_sandbox_function(get_hash,taintedStr1, cb, taintedStr2);
+  
+    // Making sure the hash code is proper
     long long hash2 = hash.copy_and_verify([](long long ret){
     if (ret > 100000000000 || ret < 0) {
         printf("ERROR: INVALID hash CAUGHT\n");
@@ -72,9 +80,9 @@ int main(int argc, char const *argv[])
     } else {
         return ret;
     }});
-        
+    
+    // Destroy and return
     printf("Hash = %llx\n", hash2);
-
     sandbox.destroy_sandbox();
     return 0;
 }
