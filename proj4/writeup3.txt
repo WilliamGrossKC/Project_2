@@ -1,1 +1,2 @@
 In Sol1 we check only the first argument of the string we pass in our app. In Sol3 we check and verify the whole string to prevent a buffer overflow.
+We also check our returned hash validity.
