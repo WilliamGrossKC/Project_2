@@ -38,12 +38,12 @@ int main(int argc, char const *argv[])
     sandbox.create_sandbox("./my_lib.so");
     
     char* copy_str = (char*)argv[1];
-    size_t helloSize = strlen(copy_str) + 1;
-    auto taintedStr1 = sandbox.malloc_in_sandbox<char>(helloSize);
+    size_t copySize = strlen(copy_str) + 1;
+    auto taintedStr1 = sandbox.malloc_in_sandbox<char>(copySize);
     
     char* result_str = (char*)argv[2];
-    size_t helloSize = strlen(result_str) + 1;
-    auto taintedStr2 = sandbox.malloc_in_sandbox<char>(helloSize);
+    size_t resultSize = strlen(result_str) + 1;
+    auto taintedStr2 = sandbox.malloc_in_sandbox<char>(resultSize);
      
     print_version();    
     long long hash = get_hash(copy_str, on_completion, result_str);
