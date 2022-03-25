@@ -9,7 +9,7 @@
 using namespace rlbox;
 //Callback on completion of library function
 
-
+/*
 void get_hash_cb(rlbox_sandbox<rlbox_noop_sandbox>& _,
               tainted<const char*, rlbox_noop_sandbox> str) {
   auto checked_string =
@@ -18,7 +18,7 @@ void get_hash_cb(rlbox_sandbox<rlbox_noop_sandbox>& _,
     });
   printf("hello_cb: %s\n", checked_string.get());
 }
-
+*/
 
 void on_completion(char* result) {
     char result_str[100];
