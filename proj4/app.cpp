@@ -27,7 +27,7 @@ void on_completion(rlbox::rlbox_sandbox<rlbox::rlbox_wasm2c_sandbox>& _,
     char result_str[100];
     auto result = tainted_str.copy_and_verify_string([](std::unique_ptr<char[]> ret){
       if (strlen(ret.get()) < 100)
-        return ret
+        return ret;
       else{
         print("ERROR: INVALID result CAUGHT");
         exit(1);
