@@ -25,7 +25,15 @@ void on_completion(rlbox::rlbox_sandbox<rlbox::rlbox_wasm2c_sandbox>& _,
                     rlbox::tainted<char*,rlbox::rlbox_wasm2c_sandbox> tainted_str) {
   
     char result_str[100];
-    strcpy(result_str, tainted_str.UNSAFE_unverified());
+    auto result = tainted_str.copy_and_verify_string([](std::unique_ptr<char[]> ret){
+      if (strlen(ret.get()) < 100)
+        return ret
+      else{
+        print("ERROR: INVALID result CAUGHT");
+        exit(1);
+        }
+    });
+    strcpy(result_str, result.get());
     printf("Done: %s\n", result_str);
   
 }
@@ -45,17 +53,25 @@ int main(int argc, char const *argv[])
     char* copy_str = (char*)argv[1];
     size_t copySize = strlen(copy_str) + 1;
     auto taintedStr1 = sandbox.malloc_in_sandbox<char>(copySize);
-    std::strcpy(taintedStr1.UNSAFE_unverified(), copy_str);
+    std::strcpy(taintedStr1.unverified_safe_pointer_because(copySize, "writing to region"), copy_str, copySize);
             
     char* result_str = (char*)argv[2];
     size_t resultSize = strlen(result_str) + 1;
     auto taintedStr2 = sandbox.malloc_in_sandbox<char>(resultSize);
-    std::strcpy(taintedStr2.UNSAFE_unverified(), result_str);
+    std::strcpy(taintedStr2.unverified_safe_pointer_because(resultSize, "writing to region"), result_str, resultSize);
   
     sandbox.invoke_sandbox_function(print_version);
     auto cb = sandbox.register_callback(on_completion);
     auto hash = sandbox.invoke_sandbox_function(get_hash,taintedStr1, cb, taintedStr2);
-    long long hash2 = hash.UNSAFE_unverified();
+    long long hash2 = hash.copy_and_verify([](long long ret){
+      if (ret >= 0 && ret < 100000000000)
+        return ret;
+      else{
+        print("ERROR: INVALID result CAUGHT");
+        exit(1);
+        }
+    });
+        
     printf("Hash = %llx\n", hash2);
 
     sandbox.destroy_sandbox();
