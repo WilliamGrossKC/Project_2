@@ -7,10 +7,6 @@
 #include "rlbox_wasm2c_sandbox.hpp"
 #include "rlbox.hpp"
 
-void on_completion(rlbox::rlbox_sandbox<rlbox::rlbox_wasm2c_sandbox>& _,
-                    rlbox::tainted<char*,rlbox::rlbox_wasm2c_sandbox> tainted_str);
-
-
 //Callback on completion of library function
 void on_completion(char* result) {
     char result_str[100];
