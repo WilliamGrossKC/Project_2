@@ -39,11 +39,11 @@ int main(int argc, char const *argv[])
     
     char* copy_str = (char*)argv[1];
     size_t helloSize = strlen(copy_str) + 1;
-    auto taintedStr = sandbox.malloc_in_sandbox<char>(helloSize);
+    auto taintedStr1 = sandbox.malloc_in_sandbox<char>(helloSize);
     
     char* result_str = (char*)argv[2];
     size_t helloSize = strlen(result_str) + 1;
-    auto taintedStr = sandbox.malloc_in_sandbox<char>(helloSize);
+    auto taintedStr2 = sandbox.malloc_in_sandbox<char>(helloSize);
      
     print_version();    
     long long hash = get_hash(copy_str, on_completion, result_str);
