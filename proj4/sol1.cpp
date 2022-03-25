@@ -52,10 +52,11 @@ int main(int argc, char const *argv[])
     auto taintedStr2 = sandbox.malloc_in_sandbox<char>(resultSize);
     std::strcopy(taintedStr2, result_str, resultSize);
   
-    sandbox.invoke_sandbox_function(print_version);   
-    long long hash = sandbox.invoke_sandbox_function(get_hash,taintedStr1, on_completion, taintedStr2);
-
-    printf("Hash = %llx\n", hash);
+    sandbox.invoke_sandbox_function(print_version);
+    auto cb = sandbox.register_callback(on_completion);
+    auto hash = sandbox.invoke_sandbox_function(get_hash,taintedStr1, on_completion, taintedStr2);
+    long long hash2 = hash.UNSAFE_unverified();
+    printf("Hash = %llx\n", hash2);
 
     sandbox.destroy_sandbox();
     return 0;
