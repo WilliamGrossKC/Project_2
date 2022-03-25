@@ -24,7 +24,7 @@ int main(int argc, char const *argv[])
         return 1;
     }
     
-    rlbox::rlbox_sandbox<noop_sandbox> sandbox;
+    rlbox::rlbox_sandbox<rlbox::rlbox_wasm2c_sandbox> sandbox;
     sandbox.create_sandbox();
     
     char* copy_str = (char*)argv[1];
