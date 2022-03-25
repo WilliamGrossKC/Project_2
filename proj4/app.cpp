@@ -23,7 +23,7 @@ int main(int argc, char const *argv[])
     }
     
     rlbox::rlbox_sandbox<rlbox::rlbox_wasm2c_sandbox> sandbox;
-    sandbox.create_sandbox();
+    sandbox.create_sandbox("./my_lib.so");
     sandbox.destroy_sandbox();
     char* copy_str = (char*)argv[1];
     char* result_str = (char*)argv[2];
