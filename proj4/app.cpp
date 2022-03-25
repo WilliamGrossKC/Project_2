@@ -53,12 +53,12 @@ int main(int argc, char const *argv[])
     char* copy_str = (char*)argv[1];
     size_t copySize = strlen(copy_str) + 1;
     auto taintedStr1 = sandbox.malloc_in_sandbox<char>(copySize);
-    std::strcpy(taintedStr1.unverified_safe_pointer_because(copySize, "writing to region"), copy_str, copySize);
+    std::strcpy(taintedStr1.unverified_safe_pointer_because(copySize, "writing to region"), copy_str);
             
     char* result_str = (char*)argv[2];
     size_t resultSize = strlen(result_str) + 1;
     auto taintedStr2 = sandbox.malloc_in_sandbox<char>(resultSize);
-    std::strcpy(taintedStr2.unverified_safe_pointer_because(resultSize, "writing to region"), result_str, resultSize);
+    std::strcpy(taintedStr2.unverified_safe_pointer_because(resultSize, "writing to region"), result_str);
   
     sandbox.invoke_sandbox_function(print_version);
     auto cb = sandbox.register_callback(on_completion);
