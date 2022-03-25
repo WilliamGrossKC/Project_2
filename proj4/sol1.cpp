@@ -6,7 +6,8 @@
 #define RLBOX_SINGLE_THREADED_INVOCATIONS
 #include "rlbox_wasm2c_sandbox.hpp"
 #include "rlbox.hpp"
-using namespace rlbox;
+
+# using namespace rlbox;
 //Callback on completion of library function
 
 /*
