@@ -1,4 +1,4 @@
-let buff = new ArrayBuffer(2000);
+let buff = new ArrayBuffer(1000);
 let f64 = new Float64Array(buff);
 let u32 = new Uint32Array(buff);
 
