@@ -2,13 +2,10 @@ let buff = new ArrayBuffer(4096);
 let f64 = new Float64Array(buff);
 let u32 = new Uint32Array(buff);
 
-let addrof = function(thing){
-    let o1 = {"gg" : 1, "ff" : thing};
-    // shift the first value plane
-    print(o1);
+let addrof = function(obj){
+    let o1 = {"int" : 69, "object" : obj};
     o1.eight();
-    print(o1);
-    let o = {"hi" : o1.gg, "bye" : 7};
+    let o = {"val" : o1.int, "floattag" : 7};
     // shift the second value plane
     // suddenly, value of thing is now tagged with a float!
     o.eight();
