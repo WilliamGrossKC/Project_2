@@ -8,3 +8,4 @@ let addrof = function(thing){
     // shift the second value plane
     // suddenly, value of thing is now tagged with a float!
     o.eight();
+};
