@@ -4,7 +4,7 @@ let u32 = new Uint32Array(buff);
 
 let addrof = function(obj){
     let first = {"int" : 420, "object" : obj};
-    o1.eight();
+    first.eight();
     let second = {"val" : first.int, "floattag" : 7};
     // shift the second value plane
     // suddenly, value of thing is now tagged with a float!
