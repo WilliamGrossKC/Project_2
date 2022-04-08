@@ -22,4 +22,4 @@ let addrof = function(thing){
     // convert hex address to decimal number
     //return parseFloat(Number("0x" + u32[1].toString(16) + u32[0].toString(16)));
     return (u32[1] * (1 << 16) * (1 << 16)) + u32[0];
-    };
+};
