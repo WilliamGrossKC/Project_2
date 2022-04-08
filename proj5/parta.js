@@ -1,6 +1,6 @@
-let buff = new ArrayBuffer(1000);
-let f64 = new Float64Array(buff);
-let u32 = new Uint32Array(buff);
+let bytes = new ArrayBuffer(1000);
+let floatview= new Float64Array(buff);
+let bitview = new Uint32Array(buff);
 
 let addrof = function(obj){
     let first = {"int" : 420, "object" : obj};
@@ -10,7 +10,7 @@ let addrof = function(obj){
     // suddenly, value of thing is now tagged with a float!
     second.eight();
     // translation
-    f64[0] = second.val;
+    floatview[0] = second.val;
     // reshift to not corrupt pointers
     first.eight();
     second.eight();
@@ -18,5 +18,5 @@ let addrof = function(obj){
     // u32[0] = bottom bits
     // convert hex address to decimal number
     //return parseFloat(Number("0x" + u32[1].toString(16) + u32[0].toString(16)));
-    return (u32[1] * (1 << 16) * (1 << 16)) + u32[0];
+    return (bitview[1] * (1 << 16) * (1 << 16)) + bitview[0];
 };
