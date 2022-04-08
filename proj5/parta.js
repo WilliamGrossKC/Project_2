@@ -1,5 +1,5 @@
 let bytes = new ArrayBuffer(1000);
-let floatview= new Float64Array(buff);
+let floatview = new Float64Array(buff);
 let bitview = new Uint32Array(buff);
 
 let addrof = function(obj){
