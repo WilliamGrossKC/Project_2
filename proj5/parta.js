@@ -3,7 +3,7 @@ let f64 = new Float64Array(buff);
 let u32 = new Uint32Array(buff);
 
 let addrof = function(obj){
-    let o1 = {"int" : 69, "object" : obj};
+    let o1 = {"int" : 1, "object" : obj};
     o1.eight();
     let o = {"val" : o1.int, "floattag" : 7};
     // shift the second value plane
