@@ -10,7 +10,7 @@ let addrof = function(obj){
     // suddenly, value of thing is now tagged with a float!
     o.eight();
     // translation
-    f64[0] = o.hi;
+    f64[0] = o.val;
     // reshift to not corrupt pointers
     o1.eight();
     o.eight();
