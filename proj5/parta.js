@@ -7,9 +7,9 @@ let addrof = function(obj){
     first.eight();
     let second = {"val" : first.int, "floattag" : 7};
     second.eight();
+    floatview[0] = second.val;
     first.eight();
     second.eight();
-    floatview[0] = second.val;
     print(bitview);
     let result = (bitview[1] * (1 << 16) * (1 << 16)) + bitview[0];
     return result;
