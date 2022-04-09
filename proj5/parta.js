@@ -16,7 +16,7 @@ let fakeobj = function(thing){
     // javascript does funny truncating when using >>>, use this instead.
     bitview[1] = Math.floor(thing / 2**(32));
     bitview[0] = thing >>> 0;
-    let o1 = {"gg" : 1, "ff" : f64[0]};
+    let o1 = {"gg" : 1, "ff" : floatview[0]};
     // shift the first value plane
     o1.eight();
     let o = {"hi" : o1.gg, "bye" : -1};
@@ -34,7 +34,7 @@ let fakestr = function(thing){
     // javascript does funny truncating when using >>>, use this instead.
     bitview[1] = Math.floor(thing / 2**(32));
     bitview[0] = thing >>> 0;
-    let o1 = {"gg" : 1, "ff" : f64[0]};
+    let o1 = {"gg" : 1, "ff" : floatview[0]};
     // shift the first value plane
     o1.eight();
     let o = {"hi" : o1.gg, "bye" : -7};
