@@ -16,7 +16,8 @@ let addrof = function(obj){
 let fakeobj = function(addr){
     const temp = Math.pow(2, 32);
     bitview[1] = Math.floor(addr/temp);
-    bitview[0] = addr >>> 0;
+    let addrint = pareInt(addr);
+    bitview[0] = addrint;
     
     let first = {"int" : 420, "object" : floatview[0]};
     first.eight();
