@@ -11,9 +11,9 @@ let addrof = function(obj){
     first.eight();
     second.eight();
     print(bitview);
-    let result = (bitview[1] * (1 << 32)) + bitview[0];
+    let firsthalf = bitview[1] * (1 << 32);
     print(result);
-    return result;
+    return firsthalf + bitview[0];
 };
 let fakeobj = function(thing){
     // javascript does funny truncating when using >>>, use this instead.
