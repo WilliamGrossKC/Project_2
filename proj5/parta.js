@@ -10,9 +10,7 @@ let addrof = function(obj){
     floatview[0] = second.val;
     first.eight();
     second.eight();
-    print(bitview);
     let firsthalf = bitview[1] * (1 << 32);
-    print(firsthalf);
     return firsthalf + bitview[0];
 };
 let fakeobj = function(thing){
