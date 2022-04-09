@@ -23,7 +23,7 @@ let fakeobj = function(thing){
     first.eight();
     let second = {"val" : first.gg, "floattag" : -1};
     second.eight();
-    const result = o.hi;
+    const result = second.hi;
     
     first.eight();
     second.eight();
@@ -41,7 +41,7 @@ let fakestr = function(thing){
     // shift the second value plane
     // suddenly, value of thing is now tagged with a str!
     second.eight();
-    let fakedstr = o.hi;
+    let fakedstr = second.hi;
     // reshift to not corrupt pointers
     first.eight();
     second.eight();
