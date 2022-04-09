@@ -14,8 +14,8 @@ let addrof = function(obj){
 };
 let fakeobj = function(thing){
     // javascript does funny truncating when using >>>, use this instead.
-    u32[1] = Math.floor(thing / 2**(32));
-    u32[0] = thing >>> 0;
+    bitview[1] = Math.floor(thing / 2**(32));
+    bitview[0] = thing >>> 0;
     let o1 = {"gg" : 1, "ff" : f64[0]};
     // shift the first value plane
     o1.eight();
@@ -32,8 +32,8 @@ let fakeobj = function(thing){
 
 let fakestr = function(thing){
     // javascript does funny truncating when using >>>, use this instead.
-    u32[1] = Math.floor(thing / 2**(32));
-    u32[0] = thing >>> 0;
+    bitview[1] = Math.floor(thing / 2**(32));
+    bitview[0] = thing >>> 0;
     let o1 = {"gg" : 1, "ff" : f64[0]};
     // shift the first value plane
     o1.eight();
