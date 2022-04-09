@@ -30,9 +30,9 @@ let fakeobj = function(thing){
     return result;
 };
 
-let fakestr = function(thing){
-    let temp = Math.pow(2, 32);
-    bitview[1] = Math.floor(thing/temp);
+let fakestr = function(addr){
+    const temp = Math.pow(2, 32);
+    bitview[1] = Math.floor(addr/temp);
     bitview[0] = thing >>> 0;
     let first = {"int" : 420, "object" : floatview[0]};
     // shift the first value plane
