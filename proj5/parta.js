@@ -12,7 +12,7 @@ let addrof = function(obj){
     second.eight();
     print(bitview);
     let firsthalf = bitview[1] * (1 << 32);
-    print(result);
+    print(firsthalf);
     return firsthalf + bitview[0];
 };
 let fakeobj = function(thing){
