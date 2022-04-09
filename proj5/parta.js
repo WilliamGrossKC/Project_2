@@ -21,7 +21,7 @@ let fakeobj = function(addr){
     first.eight();
     let second = {"val" : first.int, "objtag" : -1};
     second.eight();
-    const result = second.val;
+    let result = second.val;
     
     first.eight();
     second.eight();
