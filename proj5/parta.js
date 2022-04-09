@@ -21,7 +21,7 @@ let fakeobj = function(thing){
     bitview[0] = thing >>> 0;
     let first = {"int" : 420, "object" : floatview[0]};
     first.eight();
-    let second = {"val" : first.gg, "floattag" : -1};
+    let second = {"val" : first.gg, "objtag" : -1};
     second.eight();
     const result = second.hi;
     
