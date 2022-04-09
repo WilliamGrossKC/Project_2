@@ -13,9 +13,9 @@ let addrof = function(obj){
     let firsthalf = bitview[1] * (1 << 32);
     return firsthalf + bitview[0];
 };
-let fakeobj = function(thing){
-    let temp = Math.pow(2, 32);
-    bitview[1] = Math.floor(thing/temp);
+let fakeobj = function(addr){
+    const temp = Math.pow(2, 32);
+    bitview[1] = Math.floor(addr/temp);
     bitview[0] = thing >>> 0;
     let first = {"int" : 420, "object" : floatview[0]};
     first.eight();
@@ -28,9 +28,9 @@ let fakeobj = function(thing){
     return result;
 };
 
-let fakestr = function(addr){
-    const temp = Math.pow(2, 32);
-    bitview[1] = Math.floor(addr/temp);
+let fakestr = function(thing){
+    let temp = Math.pow(2, 32);
+    bitview[1] = Math.floor(thing/temp);
     bitview[0] = thing >>> 0;
     let first = {"int" : 420, "object" : floatview[0]};
     // shift the first value plane
