@@ -11,7 +11,7 @@ let addrof = function(obj){
     first.eight();
     second.eight();
     print(bitview);
-    let result = (bitview[1] * (1 << 16) * (1 << 16)) + bitview[0];
+    let result = (bitview[1] * (1 << 32)) + bitview[0];
     print(result);
     return result;
 };
