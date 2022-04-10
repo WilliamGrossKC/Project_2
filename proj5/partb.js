@@ -17,7 +17,7 @@ let copy = new Uint8Array(72);
 
 // Loop for each index
 var index = 0;
-while(index < codes.length){
+while(index < copy.length){
     copy[index] = fakestring.charCodeAt(offset + index);
     index++;
 }
