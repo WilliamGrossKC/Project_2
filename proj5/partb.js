@@ -12,7 +12,7 @@ while (cs361s.addrof(heapArray) < cs361s.addrof(fakedStr) || cs361s.addrof(heapA
 }
 
 let testing = function(){
-    print(heapArray);
+    cs361s.addrof(fakedStr);
 };
 
 let offset = cs361s.addrof(heapArray) - (cs361s.addrof(fakedStr) + 16);
