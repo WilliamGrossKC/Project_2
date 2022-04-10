@@ -21,7 +21,8 @@ let testing = function(){
 let offset = cs361s.addrof(heapArray) - (cs361s.addrof(fakedStr) + 16);
 let bytes = new Uint8Array(72);
 //move chars rom fake string to bytes array
-for (let i = 0; i < 72; i++) {
+var index = 0;
+while(index < bytes.length){
     bytes[i] = fakedStr.charCodeAt(offset + i);
 }
 
