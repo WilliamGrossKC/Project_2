@@ -37,12 +37,12 @@ let controlPlane = cs361s.fakeobj(cs361s.addrof(String.fromCharCode(...codes)) +
 
 let readmem = function(addr) {
     controlPlane[14] = addr % (Math.pow(2, 32));
-    controlPlane[15] = (addr - controlPlane[0]) / words;
+    controlPlane[15] = (addr - controlPlane[0]) / (Math.pow(2, 32));
     return dataPlane[0];
 };
 
 let writemem = function(addr, val) {
     controlPlane[14] = addr % (Math.pow(2, 32));
-    controlPlane[15] = (addr - controlPlane[0]) / words;
+    controlPlane[15] = (addr - controlPlane[0]) / (Math.pow(2, 32));
     dataPlane[0] = val;
 };
