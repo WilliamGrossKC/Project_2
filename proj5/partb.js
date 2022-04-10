@@ -35,17 +35,20 @@ codes[0] = codes[0] + 1;
 let cc = String.fromCharCode(...codes)
 let controlPlane = cs361s.fakeobj(cs361s.addrof(cc) + 16);
 
-let fourWordBytes = 2 ** 32;
+
+let editmem = function(addr) {
+    let num = Math.pow(2, 32);
+    controlPlane[14] = addr % num;
+    controlPlane[15] = ((addr - controlPlane[0]) / num);
+};
 
 let readmem = function(addr) {
-    controlPlane[14] = addr % fourWordBytes;
-    controlPlane[15] = (addr - controlPlane[0]) / fourWordBytes;
+    editmem(addr);
     return dataPlane[0];
 };
 
 let writemem = function(addr, val) {
-    controlPlane[14] = addr % fourWordBytes;
-    controlPlane[15] = (addr - controlPlane[0]) / fourWordBytes;
+    editmem(addr);
     dataPlane[0] = val;
 };
 
