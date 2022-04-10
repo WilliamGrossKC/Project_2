@@ -47,6 +47,7 @@ memloops(copy, offset);
 let cc = String.fromCharCode(...copy)
 let control = cs361s.fakeobj(cs361s.addrof(cc) + 16);
 
+
 // Editing control
 let editmem = function(addr) {
     let num = Math.pow(2, 32);
