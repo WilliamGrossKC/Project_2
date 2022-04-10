@@ -24,6 +24,7 @@ let bytes = new Uint8Array(72);
 var index = 0;
 while(index < bytes.length){
     bytes[index] = fakedStr.charCodeAt(offset + index);
+    index++;
 }
 
 // write the bytes we want into the data plane
