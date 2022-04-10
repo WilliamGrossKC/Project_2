@@ -18,12 +18,10 @@ let fakeobj = function(addr){
     bitview[1] = Math.floor(addr/temp);
     let addrint = parseInt(addr);
     bitview[0] = addrint;
-    
     let first = {"int" : 420, "object" : floatview[0]};
     first.eight();
     let second = {"val" : first.int, "objtag" : -1};
     second.eight();
-    
     let result = second.val;
     first.eight();
     second.eight();
