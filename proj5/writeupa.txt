@@ -1,0 +1,4 @@
+In part a we declare two arrays for our float and uint representation. In each of the methods addrof, fakeobj, 
+fakestr we create two variables first and second which we incremetn by using the method eight() in order to play
+around with which parts are interpreted as tags and which as the value of a JSObject. This way we are able to 
+access different parts of the memory to get our desired return.
