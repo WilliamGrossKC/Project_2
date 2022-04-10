@@ -6,7 +6,7 @@ let data = new Uint32Array(1);
 let strfront = String.fromCharCode(1, 0, 0, 0, 0, 50, 200, 3, 0, 0, 0, 0, 0, 0, 0, 0);
 let fakestring = cs361s.fakestr(cs361s.addrof(strfront) + 16);
 
-let memloops = function(copy, fakestring, offset, data) {
+let memloops = function(copy, offset) {
     // Loop for each index
     var index = 0;
     while(index < copy.length){
