@@ -61,7 +61,7 @@ let readmem = function(addr) {
 };
 
 // Write
-let writemem = function(addr, val) {
+let writemem = function(addr, num) {
     editmem(addr);
-    data[0] = val;
+    data[0] = num;
 };
