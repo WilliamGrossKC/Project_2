@@ -1,0 +1,7 @@
+For Part B, we create the writemem and readmem methods using the fakeobj, fakestr, and addrof.
+In order to do this, we create a data array and a control array in order to access memory.
+We first get the address of the array using our while loop.
+Then, we calculate our offerset and use memloops to transfer
+our data to our data to copy array. Then we create our control array
+for access. Writemem and Readmem use editmem to correctly
+access the control array to read and write from memory. 
