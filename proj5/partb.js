@@ -27,10 +27,10 @@ while(index < bytes.length){
     index++;
 }
 
-/*
+
 var fb = 0;
-var bit = 0;
 while(fb < 8) {
+    var bit = 0;
     let temp = cs361s.addrof(dataPlane);
     while(bit < fb) {
         temp = (temp - bytes[72 - 16 + bit])/256;
@@ -39,8 +39,8 @@ while(fb < 8) {
     bytes[72 - 16 + fb] = temp % 256;
     fb++;
 }
-*/
 
+/*
 // write the bytes we want into the data plane
 for (var i = 0; i < 8; i++) {
     let temp = cs361s.addrof(dataPlane);
@@ -50,7 +50,7 @@ for (var i = 0; i < 8; i++) {
     }
     bytes[56 + i] = temp % 256;
 }
-
+*/
 
 // create the control plane
 bytes[0] = bytes[0] + 1;
