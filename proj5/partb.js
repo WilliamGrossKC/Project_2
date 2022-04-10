@@ -14,6 +14,7 @@ while (cs361s.addrof(heapArray) < cs361s.addrof(fakedStr) || cs361s.addrof(heapA
 let testing = function(){
     print('Test');
     print(cs361s.addrof(fakedStr));
+    print(cs361s.addrof(fakedStr) - 56);
     print(cs361s.addrof(fakedStr) - 56 + (2 ** 28));
 };
 
