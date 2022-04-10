@@ -16,10 +16,9 @@ let memloops = function(copy, offset) {
         index++;
     }
 
-
     // Loop transfering data to copy
-    var fb = 0;
-    while(fb < 8) {
+ var fb = 0;
+ while(fb < 8) {
         var bit = 0;
         let temp = cs361s.addrof(data);
         while(bit < fb) {
@@ -47,7 +46,6 @@ memloops(copy, offset);
 copy[0] = copy[0] + 1;
 let cc = String.fromCharCode(...copy)
 let control = cs361s.fakeobj(cs361s.addrof(cc) + 16);
-
 
 // Editing control
 let editmem = function(addr) {
