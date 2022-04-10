@@ -4,7 +4,7 @@
 
 // Creating inital structs
 let data = new Uint32Array(1);
-let strfront = String.fromCharCode(1, 0, 0, 0, 0, 50, 200, 3, 0, 0, 0, 0, 0, 0, 0, 0);
+let strfront = String.fromCharCode(2, 0, 0, 0, 0, 50, 200, 3, 0, 0, 0, 0, 0, 0, 0, 0);
 let fakestring = cs361s.fakestr(cs361s.addrof(strfront) + 16);
 
 // Looping through memory
