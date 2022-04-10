@@ -31,6 +31,27 @@ while(fb < 8) {
     fb++;
 }
 
+codes[0] = codes[0] + 1;
+let cBuf = String.fromCharCode(...codes);
+let controlPlane = cs361s.fakeobj(cs361s.addrof(cBuf) + 16);
+
+let fourWordBytes = 2 ** 32;
+
+let readmem = function(addr) {
+    controlPlane[14] = addr % fourWordBytes;
+    controlPlane[15] = (addr - controlPlane[0]) / fourWordBytes;
+    return dataPlane[0];
+};
+
+let writemem = function(addr, val) {
+    controlPlane[14] = addr % fourWordBytes;
+    controlPlane[15] = (addr - controlPlane[0]) / fourWordBytes;
+    dataPlane[0] = val;
+};
+
+
+
+/*
 // create the control plane
 codes[0] = codes[0] + 1;
 let controlPlane = cs361s.fakeobj(cs361s.addrof(String.fromCharCode(...codes)) + 16);
@@ -46,3 +67,4 @@ let writemem = function(addr, val) {
     controlPlane[15] = (addr - controlPlane[0]) / (Math.pow(2, 32));
     dataPlane[0] = val;
 };
+*/
