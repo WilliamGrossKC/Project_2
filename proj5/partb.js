@@ -44,6 +44,7 @@ let copy = new Uint8Array(72);
 memloops(copy, offset);
 
 // pass to control
+copy[0] = copy[0] + 1;
 let cc = String.fromCharCode(...copy)
 let control = cs361s.fakeobj(cs361s.addrof(cc) + 16);
 
