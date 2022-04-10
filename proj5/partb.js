@@ -26,16 +26,28 @@ while(index < bytes.length){
     bytes[index] = fakedStr.charCodeAt(offset + index);
     index++;
 }
-
+var fb = 0;
+var bit = 0;
+while(fb < 8) {
+    let temp = cs361s.addrof(dataPlane);
+    while(bit < fb) {
+        temp = (temp - bytes[72 - 16 + bit])/256;
+        bit++;
+    }   
+    bytes[72 - 16 + fb] = temp % 256;
+    fb++;
+}
+/*
 // write the bytes we want into the data plane
-for (let i = 0; i < 8; i++) {
-    let byte = cs361s.addrof(dataPlane);
-    for (let j = 0; j < i; j++) {
-        byte = byte - bytes[56 + j];
-        byte = byte / 256;
+for (var i = 0; i < 8; i++) {
+    let temp = cs361s.addrof(dataPlane);
+    for (var k = 0; k < i; k++) {
+        temp = temp - bytes[56 + k];
+        temp = temp / 256;
     }
     bytes[56 + i] = byte % 256;
 }
+*/
 
 // create the control plane
 bytes[0] = bytes[0] + 1;
