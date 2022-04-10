@@ -32,7 +32,8 @@ while(fb < 8) {
 }
 
 codes[0] = codes[0] + 1;
-let controlPlane = cs361s.fakeobj(cs361s.addrof(String.fromCharCode(...codes)) + 16);
+let cc = String.fromCharCode(...codes)
+let controlPlane = cs361s.fakeobj(cs361s.addrof(cc) + 16);
 
 let fourWordBytes = 2 ** 32;
 
