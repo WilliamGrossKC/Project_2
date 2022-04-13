@@ -1,3 +1,6 @@
 What we do in the first part of the code is make the page readable, writable, and executable. 
-To do this, we derive the malloc usable size from the console log, and then from there, we offset the immediate values of the auipc and load instructions so that we can access the global offset table. And, since we know exactly how far GOT is from msprotect, we can access msprotect. 
+To do this, we derive the malloc usable size from the console log, and then from there, 
+we offset the immediate values of the auipc and load instructions 
+so that we can access the global offset table. 
+And, since we know exactly how far GOT is from msprotect, we can access msprotect. 
 Finally we execute the shell we get from second stage with msprotect.
