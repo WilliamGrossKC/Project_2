@@ -2,7 +2,7 @@
  * TODO: Part C solution goes here!
  */
 
-// ctx -> rt -> js malloc usable size
+// ctx leads to rt leads to js malloc usable size
 const ctx = cs361s.readmem(cs361s.addrof(console.log) + 48);
 const rt = cs361s.readmem(ctx + 24);
 const jsMallocUsableSize = cs361s.readmem(rt + 24);
