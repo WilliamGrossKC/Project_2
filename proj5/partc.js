@@ -1,6 +1,9 @@
 /*
  * TODO: Part C solution goes here!
  */
+let readmem  = cs361s.readmem;
+let writemem = cs361s.writemem;
+let addrof   = cs361s.addrof;
 /* RWX Mapping
  * use mprotect sys call 
  * mark a page on heap as rwx (PROT_READ | PROT_WRITE | PROT_EXEC)
