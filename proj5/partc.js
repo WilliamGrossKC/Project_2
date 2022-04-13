@@ -16,7 +16,7 @@ let second_stage =
 
 // mf = offset 0, 32 bits
 // ctx->rt->mf.js_malloc_usable_size
-let addressconsole = cs361.addrof(console.log);
+let addressconsole = cs361s.addrof(console.log);
 let ctx = cs361s.readmem(addressconsole + 48);
 let rt = cs361s.readmem(ctx + 24);
 let mf_js_malloc_offset = cs361s.readmem(rt + 24);
