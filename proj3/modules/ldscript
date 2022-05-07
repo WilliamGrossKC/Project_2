@@ -1,0 +1,14 @@
+ENTRY(0x0)
+
+MEMORY {
+  code (rx)   : ORIGIN = 0x200000, LENGTH = 1M
+  data (rw!x) : ORIGIN = 0x300000, LENGTH = 1M
+}
+
+SECTIONS {
+  .text     : { *(.text);     *(.text.*) }    > code
+  .rodata   : { *(.rodata);   *(.rodata.*) }  > data
+  .data     : { *(.data);     *(.data.*) }    > data
+  .bss      : { *(.bss);      *(.bss.*) }     > data
+  /DISCARD/ : { *(.eh_frame); *(.eh_frame_hdr); }
+}
