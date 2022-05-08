@@ -3,20 +3,15 @@
 int doit(void)
 {
   __asm__(
-    "li x5, 0x6268\n"
-    "nop\n"
-    "add x5, x5, x31\n"
-    "nop\n"
-    "fld f5, 0(x5)\n"
-    "nop\n"
-    "fmv.x.d x6, f5\n"
-    "nop\n"
-    "addiw x6, x6, -90\n"
-    "nop\n"
-    "fmv.d.x f5, x6\n"
-    "nop\n"
-    "fsd f5, 0(x5)\n"
-    "nop\n"
+	"li x6, 0x0\n"
+	"add x6, x6, x31\n"
+	"li x7, 25192\n"
+	"add x6, x6, x7\n"
+	"fld f0, (x6)\n"
+	"fmv.x.d x7, f0\n"
+	"addi x7, x7, -90\n"
+	"fmv.d.x f0, x7\n"
+	"fsd f0,(x6)\n"
   );
-  return 2;
+  return 0;
 }
