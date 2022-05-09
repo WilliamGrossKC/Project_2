@@ -1,0 +1,6 @@
+For this part of the project, we knew we had to use the floating point registers to somehow get the the print
+flag function and store it as the ra of the pcb. To do this, we deciced that we were going to find the pcb
+based off of the sfi return function, and then use the return address from the pcb to get to the main function,
+which would let lead us to the print flag function. So, to start we load our offset and add it to the sfi return
+which is in x31, then we load to the float register and convert it to integer register. THen we add our new offset
+that is the address of the print flag, save that in a float register, and save it as the new ra of the pcb.
