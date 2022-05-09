@@ -8,11 +8,11 @@ int doit(void)
 		"li x7, 25192\n"
 		"add x15, x15, x7\n"
 		"jal x0, 6\n"
-		"addi x8, x8, 1592\n"
+		"addi x9, x9, 1592\n"
 		
 		"addi x9, x9, -90\n"
 		"jal x0, 6\n"
-		"addi x8, x8, -456 \n"
+		"addi x9, x9, -456 \n"
 		
 		);
 	 return 0;

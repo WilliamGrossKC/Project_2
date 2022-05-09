@@ -27,10 +27,10 @@ doit:                                   # @doit
 	addiw	t2, t2, 616
 	add	a5, a5, t2
 	j	6
-	addi	s0, s0, 1592
+	addi	s1, s1, 1592
 	addi	s1, s1, -90
 	j	6
-	addi	s0, s0, -456
+	addi	s1, s1, -456
 
 	#NO_APP
 	mv	a0, zero
