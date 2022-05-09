@@ -1,0 +1,6 @@
+This part was very similar to part a, but the difference was we somehow needed to find a way to load and store
+using 2 byte instructions when we could only use 4 byte instructions. We use jal to jump 2 bytes into a instruction
+and lined up the bits to work as a C.LD and C.SD function. So, the steps include loading the offset and adding
+it to x31 to get to the pcb. Then, we use the jal to jump in the middle of a addi instruction loads
+the ra address of the pcb. Then, we add the second offset to get to the print flag. Finally, we do a second jal
+and a second addi to store register x9 as the new ra for the pcb.
