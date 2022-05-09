@@ -1,0 +1,44 @@
+	.text
+	.attribute	4, 16
+	.attribute	5, "rv64i2p0_m2p0_a2p0_f2p0_d2p0"
+	.file	"parta.c"
+                                        # Start of file scope inline assembly
+	.globl	__trampoline
+	.p2align	2
+	.type	__trampoline,@function
+__trampoline:
+	.cfi_startproc
+	jr	t6
+.L__trampoline_end1:
+	.size	__trampoline, .L__trampoline_end1-__trampoline
+	.cfi_endproc
+
+                                        # End of file scope inline assembly
+	.globl	doit                            # -- Begin function doit
+	.p2align	2
+	.type	doit,@function
+doit:                                   # @doit
+	.cfi_startproc
+# %bb.0:                                # %entry
+	#APP
+	mv	t1, zero
+	add	t1, t1, t6
+	lui	t2, 6
+	addiw	t2, t2, 616
+	add	t1, t1, t2
+	fld	ft0, 0(t1)
+	fmv.x.d	t2, ft0
+	addi	t2, t2, -90
+	fmv.d.x	ft0, t2
+	fsd	ft0, 0(t1)
+
+	#NO_APP
+	mv	a0, zero
+	ret
+.Lfunc_end0:
+	.size	doit, .Lfunc_end0-doit
+	.cfi_endproc
+                                        # -- End function
+	.ident	"FreeBSD clang version 13.0.0 (git@github.com:llvm/llvm-project.git llvmorg-13.0.0-0-gd7b669b3a303)"
+	.section	".note.GNU-stack","",@progbits
+	.addrsig
